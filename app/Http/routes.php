@@ -1,5 +1,7 @@
 <?php
 
+use App\Post;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -53,9 +55,9 @@
 |--------------------------------------------------------------------------
 */
 
-// Route::get('/insert', function() {
-//   DB::insert('insert into posts(title, content) values(?, ?)', ['PHP with Laravel', 'Laravel is the best thing that has happened to PHP']);
-// });
+Route::get('/insert', function() {
+  DB::insert('insert into posts(title, content) values(?, ?)', ['Laravel is awesome!', 'Laravel is the best thing that has happened to PHP, PERIOD']);
+});
 
 
 // Route::get('/read', function() {
@@ -75,8 +77,74 @@
 //   return $updated;
 // });
 
-Route::get('/delete', function() {
-  $deleted = DB::delete('delete from posts where id = ?', [1]);
+// Route::get('/delete', function() {
+//   $deleted = DB::delete('delete from posts where id = ?', [1]);
 
-  return $deleted;
+//   return $deleted;
+// });
+
+//
+
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENT
+|--------------------------------------------------------------------------
+*/
+
+// Route::get('/read', function(){
+//   $posts = Post::all();
+
+//     foreach($posts as $post) {
+//       return $post->title;
+//     }
+// });
+
+
+
+// Route::get('/find', function(){
+//   $post = Post::find(1);
+//     return $post->title;
+// });
+
+
+// Route::get('/findwhere', function() {
+//   $posts = Post::where('id', 2)->orderBy('id', 'desc')->take(1)->get();
+
+//     return $posts;
+// });
+
+
+// Route::get('/findmore', function() {
+//   // $posts = Post::findOrFail(3);
+
+//   //   return $posts;
+
+
+//   $posts = Post::where('users_count', '<', 50)->firstOrFail();
+
+// });
+
+
+// Route::get('/basicinsert', function() {
+//   $post = new Post;
+
+//   $post->title = 'New Eloquent title insert';
+//   $post->content = 'Wow eloquent is really cool, look at this content';
+
+//   $post->save();
+// });
+
+// Route::get('/basicinsert1', function() {
+//   $post = Post::find(1);
+
+//   $post->title = 'New Eloquent title insert 1';
+//   $post->content = 'Wow Eloquent is really cool, look at this content 1';
+
+//   $post->save();
+// });
+
+
+Route::get('/create', function() {
+  Post::create(['title'=>'the create method', 'content'=>'WOW I\'m learning a lot with Edwin Diaz']);
 });
