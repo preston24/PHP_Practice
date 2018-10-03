@@ -102,10 +102,13 @@ Route::get('/insert', function() {
 
 
 
+
 // Route::get('/find', function(){
 //   $post = Post::find(1);
 //     return $post->title;
 // });
+
+
 
 
 // Route::get('/findwhere', function() {
@@ -113,6 +116,8 @@ Route::get('/insert', function() {
 
 //     return $posts;
 // });
+
+
 
 
 // Route::get('/findmore', function() {
@@ -126,16 +131,20 @@ Route::get('/insert', function() {
 // });
 
 
-// Route::get('/basicinsert', function() {
-//   $post = new Post;
 
-//   $post->title = 'New Eloquent title insert';
-//   $post->content = 'Wow eloquent is really cool, look at this content';
+Route::get('/basicinsert', function() {
+  $post = new Post;
 
-//   $post->save();
-// });
+  $post->title = 'New Eloquent title insert';
+  $post->content = 'Wow eloquent is really cool, look at this content';
 
-// Route::get('/basicinsert1', function() {
+  $post->save();
+});
+
+
+
+
+// Route::get('/basicinsert2', function() {
 //   $post = Post::find(1);
 
 //   $post->title = 'New Eloquent title insert 1';
@@ -145,6 +154,71 @@ Route::get('/insert', function() {
 // });
 
 
-Route::get('/create', function() {
-  Post::create(['title'=>'the create method', 'content'=>'WOW I\'m learning a lot with Edwin Diaz']);
+
+
+// Route::get('/create', function() {
+//   Post::create(['title'=>'the create method', 'content'=>'WOW I\'m learning a lot with Edwin Diaz 123']);
+// });
+
+
+
+
+// Route::get('/update', function() {
+//   Post::where('id', 2)->where('is_admin', 0)->update(['title'=>'New PHP title', 'content'=>'I love my pizza!!!']);
+// });
+
+
+
+
+// Route::get('/delete', function() {
+//   $post = Post::find(7);
+
+//   $post->delete();
+// });
+
+
+
+
+// Route::get('/delete2', function() {
+//   Post::destroy([3,4]);
+
+//   // Post::where('is_admin', 0)->delete();
+// });
+
+
+
+
+// Route::get('/softdelete', function() {
+//    Post::find(5)->delete();
+// });
+
+
+
+
+// Route::get('/readsoftdelete', function() {
+//   // $post = Post::find(5);
+
+//   // return $post;
+
+//   // $post = Post::withTrashed()->where('id', 5)->get();
+
+//   // return $post;
+
+//   $post = Post::onlyTrashed()->where('is_admin', 0)->get();
+
+//   return $post;
+// });
+
+
+
+
+
+// Route::get('/restore', function() {
+//   Post::withTrashed()->where('is_admin', 0)->restore();
+// });
+
+
+
+Route::get('/forcedelete', function() {
+  Post::onlyTrashed()->where('is_admin', 0)->forcedelete();
 });
