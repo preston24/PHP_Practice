@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,14 +133,14 @@ Route::get('/insert', function() {
 
 
 
-Route::get('/basicinsert', function() {
-  $post = new Post;
+// Route::get('/basicinsert', function() {
+//   $post = new Post;
 
-  $post->title = 'New Eloquent title insert';
-  $post->content = 'Wow eloquent is really cool, look at this content';
+//   $post->title = 'New Eloquent title insert';
+//   $post->content = 'Wow eloquent is really cool, look at this content';
 
-  $post->save();
-});
+//   $post->save();
+// });
 
 
 
@@ -219,6 +220,43 @@ Route::get('/basicinsert', function() {
 
 
 
-Route::get('/forcedelete', function() {
-  Post::onlyTrashed()->where('is_admin', 0)->forcedelete();
+// Route::get('/forcedelete', function() {
+//   Post::onlyTrashed()->where('is_admin', 0)->forcedelete();
+// });
+
+
+
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENT RELATIONSHIPS
+|--------------------------------------------------------------------------
+*/
+
+
+// ONE TO ONE RELATIONSHIP
+
+
+// Route::get('/user/{id}/post', function($id){
+//   return User::find($id)->post->content;
+// });
+
+
+
+// Route::get('/post/{id}/user', function($id){
+//   return Post::find($id)->user->name;
+// });
+
+
+// ONE TO MANY RELATIONSHIP
+
+Route::get('/posts', function() {
+  $user = User::find(1);
+
+  foreach($user->posts as $post) {
+    echo $post->title . "<br>";
+  }
 });
